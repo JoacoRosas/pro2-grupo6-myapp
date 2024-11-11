@@ -2,6 +2,6 @@
 
 module.exports = {
     index: function(req, res, next) {
-        res.render('index', { title: 'Express' });
+        res.render('index'); //por ahora lo dejo asi, porque solo quiero ver como queda el ejs (dsp cuando tengamos la base de datos hacemos el findAll())
       }
 }
