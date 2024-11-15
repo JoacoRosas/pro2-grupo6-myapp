@@ -3,15 +3,21 @@ const db = require("../database/models")
 
 module.exports = {
     index: function(req, res, next) {
-      db.Product.findAll()
+      let filtro = {
+        order: [["created_at", "DESC"]],
+        include: [{association: "user"}]
+      }
+    
+      db.Product.findAll(filtro)
       .then(function(results){
-        res.send (results)
+        //return res.send(results);
+        return res.render('index', {productos: results});
       })
       .catch(function(error){
         console.log(error);
         
       })
 
-       // res.render('index'); //por ahora lo dejo asi, porque solo quiero ver como queda el ejs (dsp cuando tengamos la base de datos hacemos el findAll())
+       
       }
 }

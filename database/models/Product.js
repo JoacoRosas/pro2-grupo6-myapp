@@ -14,6 +14,9 @@ module.exports = function(sequelize, datatypes){
         image:{
             type: datatypes.STRING(500)
         },
+        description: {
+            type: datatypes.STRING(250)
+        },
         user_id:{
             type: datatypes.INTEGER
         }
@@ -27,7 +30,11 @@ module.exports = function(sequelize, datatypes){
 
     const Product = sequelize.define(alias, cols, config)
 
-    //acá falta la relación
+    Product.associate = function(models) {  //.associate para establecer relacion 1:N
+        Product.belongsTo(models.User, { //models."alias con el modelo que relaciono"
+            as: "user",               //alias de la relacion (en minusucula)
+            foreignKey: "user_id"      //un PK de otra tabla
+        })};
 
     return Product
 }
