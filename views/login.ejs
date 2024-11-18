@@ -12,15 +12,25 @@
 	<!-- /Header -->
 
 	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Ingresar</h2>
+	<form action="/users/login" method="post">
+		<div class="container products-wrapper">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="products-title">Ingresar</h2>
+				</div>
+				<input id="email"  class="input" type="email" name="email" placeholder="email">
 			</div>
+			<div>
+				<input id="password" class="input" type="password" name="password" placeholder="clave">
+			</div>
+			<label>
+				<input type="checkbox" name="recordame" value="">Recordame
+			</label>
+			<button type="text">Ingresar</button>
+		</div>
+	</form>	
 
-			<h2 class="col-12"> //////////////////////////////// <br>
-				Eliminá está etiqueta h2 y creá en su lugar el formulario de login <br>
-			////////////////</h2>
+
 
 
 
