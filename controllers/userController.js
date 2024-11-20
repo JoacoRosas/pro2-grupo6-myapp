@@ -34,11 +34,8 @@ module.exports = {
         .catch(function(error) {
             console.log(error);
         })
-
-
-
-      return res.redirect('/')
     },
+
     results: function(req,res){
       let form = req.body;
 
