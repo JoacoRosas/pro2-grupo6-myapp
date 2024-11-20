@@ -1,5 +1,6 @@
 //acordarse de requerir el db cuando vincule la base de datos
 const db = require("../database/models")
+const op = db.Sequelize.Op;
 
 module.exports = {
     detalle: function (req, res) { //detalle de un solo producto
@@ -24,11 +25,46 @@ module.exports = {
     }, 
 
     saveFormCreate: function (req, res) { //post que guarda y procesa la informacion que se relleno en el form (el de arriba)
-        
+        //falta el if de control de acceso
+        let form = req.body;
+
+        if (form.name == '') {
+            res.send("El nombre del producto no puede estar vacio")
+        } else if (form.image == '') {
+            res.send("La imagen no puede estar vacia")
+        } else if (form.description == '') {
+            res.send('La descripción no puede estar vacia')
+        } else {
+            db.Product.create(form)
+            .then(function(results) {
+                return res.redirect('/')
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+        }
+
     }, 
 
     search: function (req, res) { //resultados de busqueda del query (barra de navegacion)
-        return res.render('searchResults')
-    },
+        let qs = req.query.search;
+
+        let filtro = {
+            where : [{name:{
+                [op.like] : `%${qs}%`
+            }}],
+            order: [["created_at", "DESC"]],
+            include: [{association: "user"}]
+        }
+
+        db.Product.findAll(filtro)
+        .then(function(results) {
+            //return res.send(results)
+            return res.render('searchResults', {productos: results})
+        })
+        .catch(function(error) {
+            console.log(error);
+        }) 
+    }
 }
 

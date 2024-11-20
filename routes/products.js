@@ -8,7 +8,7 @@ router.get('/detalle/:id', productController.detalle);
 
 router.get('/register', productController.showFormCreate);
 
-//router.post('/register', productController.saveFormCreate); lo ponemos bien cuando hagamos esto (mientras lo dejamos asi)
+router.post('/register', productController.saveFormCreate);
 
 router.get('/search', productController.search); 
 

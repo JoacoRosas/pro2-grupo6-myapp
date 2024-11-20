@@ -24,7 +24,7 @@
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
 						<a href="/products/detalle/<%= productos[i].id %>">
-							<figure class="product-box_image"> <!--Por ahora lo dejamos asi hardcodeado, DSP SE CAMBIA-->
+							<figure class="product-box_image">
 								<img src="<%= productos[i].image %>" alt="cafetera moulinex">
 							</figure>
 							<article class="product-box_data">
@@ -37,7 +37,9 @@
 					</section>
 				</div>
 			<% } %>
-			
+			<div class="col-12">
+				<h2 class="products-title"><a href="/products/register">Agregar Productos (se borra cuando hagamos el header logueado)</a></h2>
+			</div>
 		
 		</div>
 	</div>

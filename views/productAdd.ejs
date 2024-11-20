@@ -14,11 +14,25 @@
 				<h2 class="products-title">Agregar productos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> //////////////////////////////// <br>
-				Eliminá está etiqueta h2 y creá en su lugar el formulario para agregar productos al catálogo <br>
-				////////////////</h2>
+			<form action="/products/register" method="post">
+				<div>
+					<input id="name" class="input" type="text" name="name" placeholder="Nombre producto" />
+				</div>
+				<div>
+					<input id="image" class="input" type="url" name="image" placeholder="Imagen URL" />
+				</div>
+				<div>
+					<input id="description" class="input" type="text" name="description" placeholder="Descripcion" />
+				</div>
+				<div>
+					<input type="hidden" name="user_id" value="4" /> <!--ACA PONER ID EN SESSION (ejs es LOCALS)-->
+				</div>
+				<div>
+					<button type="text" class="submit">Guardar</button>
+				</div>
+			</form>
 
-
+		</div>
 	<!-- footer -->
 	<%- include('./partials/footer') %>
 	<!-- /footer -->
