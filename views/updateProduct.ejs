@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+    <%- include('./partials/head') %>
+<body>
+	<!-- Header -->
+	<%- include('./partials/header') %>
+	<!-- /Header -->
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Actualizar producto</h2>
+			</div>
+			<!-- Show the actualizar products -->
+			<form action="/products/update" method="post">
+
+				<input type="hidden" name="id" value="<%= producto.id %>"> <!-- pongo en hidden el id del producto para luego filtrarlo -->
+                <div>
+					<input id="name" class="input" type="text" name="name" value="<%= producto.name %>" />
+				</div>
+				<div>
+					<input id="image" class="input" type="url" name="image" value="<%= producto.image %>" />
+				</div>
+				<div>
+					<input id="description" class="input" type="text" name="description" value="<%= producto.description %>" />
+				</div>
+				<div>
+					<input type="hidden" name="user_id" value="<%= producto.user_id %>" /> 
+				</div>
+				<div>
+					<button type="text" class="submit">Actualizar</button>
+				</div>
+			</form>
+
+		</div>
+	<!-- footer -->
+	<%- include('./partials/footer') %>
+	<!-- /footer -->
+</body>
+
+</html>
