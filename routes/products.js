@@ -12,4 +12,8 @@ router.post('/register', productController.saveFormCreate);
 
 router.get('/search', productController.search); 
 
+router.get('/update/:idProducto', productController.showUpdate);
+
+router.post('/update', productController.saveUpdate);
+
 module.exports = router;

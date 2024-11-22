@@ -65,6 +65,34 @@ module.exports = {
         .catch(function(error) {
             console.log(error);
         }) 
+    },
+
+    showUpdate: function(req, res) { //get que muestra el formulario para poder editarlo
+        let idProducto = req.params.idProducto;
+
+        db.Product.findByPk(idProducto)
+            .then(function(results) {
+                return res.render('updateProduct', {producto: results})
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+    },
+
+    saveUpdate: function(req, res) { //post que procesa la informacion y actualiza el producto
+        let form = req.body;
+
+        let filtro = {
+            where: {id: form.id}
+        }
+
+        db.Product.update(form, filtro)
+            .then(function(results) {
+                return res.redirect(`/products/detalle/${form.id}`)
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
     }
 }
 
