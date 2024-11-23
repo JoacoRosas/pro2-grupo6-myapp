@@ -16,5 +16,7 @@ router.post('/login', userController.loginUser)
 /* result prueba - POST*/
 router.post('/register', userController.results)
 
+router.post('/logout', userController.logout)
+
 
 module.exports = router;

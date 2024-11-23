@@ -28,9 +28,9 @@ module.exports = {
                   let validarClave = bcrypt.compareSync(form.password, results.password)
 
                   if (validarClave){
-                      //hacerlo despues//req.session.user = results.dataValues; //propiedad que solo me trae los datos de la tabla que tengamos en el modelo (solo results es mucha info basura)
-                      // return res.send(res.locals.user)
-                      return res.redirect("/")
+                      req.session.user = results.dataValues; //propiedad que solo me trae los datos de la tabla que tengamos en el modelo (solo results es mucha info basura)
+                      return res.send(res.locals.user)
+                      //return res.redirect("/")
                   } else {
                       return res.send("Clave incorrecta")
                   }
@@ -69,5 +69,10 @@ module.exports = {
             console.log(error);
         })
       }
+    },
+
+    logout: function(req, res){
+      req.session.destroy()
+      return res.redirect("/")
     }
 }

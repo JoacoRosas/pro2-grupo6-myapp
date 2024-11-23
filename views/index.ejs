@@ -4,6 +4,13 @@
     <%- include('./partials/head') %>
 <body>
 	<!-- Header: Pasado a partials-->
+	 <% if (locals.user != undefined) {%>
+		<%- include('./partials/headerLogueado') %>
+	 <%} else {%>
+		<%- include('./partials/header') %>
+	 <%} %>
+
+
 	<%- include('./partials/header') %>
 	<!-- /Header -->
 	
