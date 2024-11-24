@@ -5,7 +5,7 @@ USE mercado_db;
 CREATE TABLE USERS (
 	id 			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name 		VARCHAR(100) NOT NULL,
-    email 		VARCHAR(255) NOT NULL,
+    email 		VARCHAR(255) NOT NULL UNIQUE,
     password 	VARCHAR(255) NOT NULL,
 
     -- Auditoria
@@ -18,7 +18,7 @@ CREATE TABLE PRODUCTS (
 	id 			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name 		VARCHAR(100) NOT NULL,
     image 		VARCHAR(500) NOT NULL,
-    description VARCHAR(250),
+    description VARCHAR(500),
     user_id 	INT UNSIGNED DEFAULT NULL,
     
     -- FOREGIN KEY (USER_ID)

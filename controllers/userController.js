@@ -3,11 +3,19 @@ const bcrypt = require("bcryptjs")
 
 module.exports = {
     register: function(req, res) {
-      return  res.render('register'); //por ahora lo dejo asi, porque solo quiero ver como queda el ejs (dsp cuando tengamos la base de datos hacemos el findAll())
-      },
+      if (req.session.user != undefined) {
+        return res.redirect('/')
+      } else {
+        return  res.render('register');
+      }
+    },
 
     login: function(req,res){
-      return res.render('login');
+      if (req.session.user != undefined) {
+        return res.redirect('/')
+      } else {
+        return res.render('login');
+      }
     },
 
     loginUser: function(req,res){

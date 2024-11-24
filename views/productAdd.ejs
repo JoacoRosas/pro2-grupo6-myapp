@@ -29,7 +29,7 @@
 					<input id="description" class="input" type="text" name="description" placeholder="Descripcion" />
 				</div>
 				<div>
-					<input type="hidden" name="user_id" value="4" /> <!--ACA PONER ID EN SESSION (ejs es LOCALS)-->
+					<input type="hidden" name="user_id" value="<%= locals.user.id %>" /> <!--ACA PONER ID EN SESSION (ejs es LOCALS)-->
 				</div>
 				<div>
 					<button type="text" class="submit">Guardar</button>
