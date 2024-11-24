@@ -13,35 +13,33 @@ module.exports = {
     loginUser: function(req,res){
       let form = req.body;
 
-      if (form.email == '') {
-        return res.send('El email no puede estar vacío')
-      } else if (form.password == '') {
-        return res.send('El campo contraseña no puede estar vacío')
-      } else {
-        let filtro = {
-          where: {email: form.email}
-        }
-
-        db.User.findOne(filtro)
-          .then(function(results) {
-              if (results != undefined) {
-                  let validarClave = bcrypt.compareSync(form.password, results.password)
-
-                  if (validarClave){
-                      req.session.user = results.dataValues; //propiedad que solo me trae los datos de la tabla que tengamos en el modelo (solo results es mucha info basura)
-                      return res.send(res.locals.user)
-                      //return res.redirect("/")
-                  } else {
-                      return res.send("Clave incorrecta")
-                  }
-              } else {
-                  return res.send("No se encontro un usuario")
-              }
-          })
-          .catch(function(error) {
-              console.log(error);
-          })
+      let filtro = {
+          where:{
+              email: form.email
+          }
       }
+
+      db.User.findOne(filtro)
+      .then(function(result){
+
+          if (result != undefined) {
+
+              let validarClave = bcrypt.compareSync( form.password , result.password);
+              
+              if (validarClave) {
+                req.session.user = result.dataValues;
+                return res.redirect("/");
+              } else {
+                  return res.send("Clave incorrecta");
+              }
+
+          } else {
+              return res.send("No se encontro un usuarios");
+          }
+      }).catch(function(error){
+          return console.log(error);
+          
+      })
     },
 
     results: function(req,res){
