@@ -42,7 +42,7 @@ module.exports = {
               }
 
           } else {
-              return res.send("No se encontro un usuarios");
+              return res.send("No se encontro un usuario");
           }
       }).catch(function(error){
           return console.log(error);
@@ -56,12 +56,11 @@ module.exports = {
       if(form.email == ""){
         return res.send('El email no puede estar vacío')
       }
-      //falta el caso de email duplicado
       else if (form.name == "") {
-        return res.send('Campo obligatorio')//aca no me dicen que valide
+        return res.send('El username no puede estar vacío')
       }
       else if (req.body.password == "") {
-        return res.send('Campo obligatorio')
+        return res.send('La contraseña no puede estar vacío')
       }
       else{
         let pass = bcrypt.hashSync(form.password, 10)
