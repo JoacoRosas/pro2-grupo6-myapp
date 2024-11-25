@@ -17,28 +17,28 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Perfil de: <%= perfil.name%></h2>
+				<h2 class="products-title">Usuario: <%= perfil.name%></h2>
                 <h2 class="products-title">Email: <%= perfil.email%></h2>
-                <h2 class="products-title">Productos que creo <%= perfil.name%></h2>
+                <h2 class="products-title">Productos que creo <%= perfil.name%>:</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% for( let i = 0; i < perfil.productos.length; i++ ) { %>
+			<% for(let i = 0; i < perfil.products.length; i++ ) { %>
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
-						<a href="/products/detalle/<%= perfil.productos[i].id %>">
+						<a href="/products/detalle/<%= perfil.products[i].id %>">
 							<figure class="product-box_image">
-								<img src="<%= perfil.productos[i].image %>" alt="cafetera moulinex">
+								<img src="<%= perfil.products[i].image %>" alt="cafetera moulinex">
 							</figure>
 							<article class="product-box_data">
-								<h2><%= perfil.productos[i].name %></h2>
-								<p><%= perfil.productos[i].description %></p>
+								<h2><%= perfil.products[i].name %></h2>
+								<p><%= perfil.products[i].description %></p>
+								<p>Creado por: <%= perfil.name %></p>
 								<p>Comentarios: 12</p>
 							</article>
 						</a>
 					</section>
 				</div>
 			<% } %>
-		
 		</div>
 	</div>
 
