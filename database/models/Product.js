@@ -15,7 +15,7 @@ module.exports = function(sequelize, datatypes){
             type: datatypes.STRING(500)
         },
         description: {
-            type: datatypes.STRING(250)
+            type: datatypes.STRING(500)
         },
         user_id:{
             type: datatypes.INTEGER

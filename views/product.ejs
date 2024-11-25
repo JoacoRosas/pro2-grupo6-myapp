@@ -24,7 +24,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="<%= producto.image %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						Creado por: <%= producto.user.name %></p>
+						Creado por: <a href="/users/detalle/<%= producto.user.id %>"><%= producto.user.name %></a></p>
 					<p class="product-detail-description">
 						Descripción: <%= producto.description %></p>
 				</article>

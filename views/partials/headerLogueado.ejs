@@ -36,7 +36,7 @@
             <ul class="right-navbar">
              
                 <li> 
-                   Hola <%= locals.user.name %> <i class="fas fa-user"></i>
+                   <a href="/users/detalle/<%= locals.user.id %>">Hola <%= locals.user.name %> <i class="fas fa-user"></i></a>
                 </li>
                 <li>
                     <form action="/users/logout" method="post">
