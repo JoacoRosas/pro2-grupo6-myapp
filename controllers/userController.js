@@ -79,5 +79,27 @@ module.exports = {
     logout: function(req, res){
       req.session.destroy()
       return res.redirect("/")
+    },
+
+    detalle: function(req, res){
+      if (req.session.user == undefined) {
+        return res.redirect("/")
+      } else {
+        let id = req.params.id
+
+        let filtro = {
+          include : [{association : 'products'}]
+        }
+
+        db.User.findByPk(id, filtro)
+        .then(function(results){
+          //return res.send(results)
+          return res.render('profile', {perfil: results})
+        })
+        .catch(function(error){
+          console.log(error);  
+        })
+      }
+
     }
 }
