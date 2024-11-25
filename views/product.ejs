@@ -15,9 +15,16 @@
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= producto.name %></h2> 
+		
+		<!-- Editar el producto (solo el que lo creo)-->
+		<% if (locals.user != undefined) { %>
+			<% if (locals.user.id == producto.user_id) { %>
 			<p class="product-detail-description">
 				<a href="/products/update/<%= producto.id %>">Editar</a>
 			</p>
+			<% } %>
+		<% } %>
+
 		</div>
 		<div class="product-detail">
 			<div class="row">

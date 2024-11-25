@@ -26,28 +26,35 @@ module.exports = {
               email: form.email
           }
       }
-
-      db.User.findOne(filtro)
-      .then(function(result){
-
-          if (result != undefined) {
-
-              let validarClave = bcrypt.compareSync( form.password , result.password);
-              
-              if (validarClave) {
-                req.session.user = result.dataValues;
-                return res.redirect("/");
+      if (form.email == "") {
+        return res.send("El email no puede estar vacío")
+      } else if (form.password == "") {
+        return res.send('La contraseña no puede estar vacía')
+      } else {
+          db.User.findOne(filtro)
+          .then(function(result){
+    
+              if (result != undefined) {
+    
+                  let validarClave = bcrypt.compareSync( form.password , result.password);
+                  
+                  if (validarClave) {
+                    req.session.user = result.dataValues;
+                    return res.redirect("/");
+                  } else {
+                      return res.send("Clave incorrecta");
+                  }
+    
               } else {
-                  return res.send("Clave incorrecta");
+                  return res.send("No se encontro un usuario");
               }
+          })
+          .catch(function(error){
+              return console.log(error);
+          })
+      }
 
-          } else {
-              return res.send("No se encontro un usuario");
-          }
-      }).catch(function(error){
-          return console.log(error);
-          
-      })
+      
     },
 
     results: function(req,res){
@@ -59,8 +66,8 @@ module.exports = {
       else if (form.name == "") {
         return res.send('El username no puede estar vacío')
       }
-      else if (req.body.password == "") {
-        return res.send('La contraseña no puede estar vacío')
+      else if (form.password == "") {
+        return res.send('La contraseña no puede estar vacía')
       }
       else{
         let pass = bcrypt.hashSync(form.password, 10)
